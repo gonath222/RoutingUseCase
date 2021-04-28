@@ -1,0 +1,66 @@
+<div class="container">
+    <div class="row"><div class="col-12">
+    <div class="login-form ">
+            <h2 class="text-center">Register Here</h2>   
+            <div class="form-group">
+                <input type="text" class="form-control" id="firstname" name="firstname" placeholder="First Name" required="required">
+                <div class="invalid-feedback" id="firstname_errortxt">
+                    Please enter your First Name
+                  </div>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control"  id='lastname' name="lastname" placeholder="Last Name" required="required">
+                <div class="invalid-feedback" id="lastname_errortxt">
+                    Please enter your Last name
+                  </div>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control"  id='username' name="username" placeholder="Username" required="required">
+                <div class="invalid-feedback" id="username_errortxt">
+                    Please enter your Username
+                  </div>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" id='password' name="password" placeholder="Password" required="required">
+                <div class="invalid-feedback" id="password_errortxt">
+                    Please enter Password
+                  </div>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control"  id='cpassword' name="cpassword" placeholder="Confirm Password" required="required">
+                <div class="invalid-feedback" id="cpassword_errortxt">
+                    Please enter Confirm password
+                  </div>
+                  <div class="invalid-feedback" id="cpassword_match_errortxt">
+                   Confirm Password does not match
+                  </div>
+            </div>      
+            <div class="form-group">
+                <input type="text" class="form-control" id="emailaddress" name="emailaddress" placeholder="EmailAddress@provider.com" required="required">
+                <div class="invalid-feedback" id="emailaddress_errortxt">
+                    Please enter your email address
+                  </div>
+                  <div class="invalid-feedback" id="emailaddress_valid_errortxt">
+                    Please enter your valid email address
+                  </div>
+            </div>    
+            <div class="form-group">
+                <select class="form-select" id='gender' >
+                    <option name='select' value="-1" class="selectedoption">Select Gender</option>
+                    <option name='Male' value="Male">Male</option>
+                    <option name='Female' value="Female">Female</option>
+                </select>
+                <div class="invalid-feedback" id="gender_errortxt">
+                    Please select the gender
+                  </div>
+            </div>    
+            <div class="form-group">
+                <button type="submit" (click)="OnSubmitRegistration()" class="btn btn-primary btn-lg btn-block">Register Me!</button>
+            </div>
+            
+        <p class="text-center small">Already a member? <a href="loginpage.html">Login in here!</a></p>
+    </div>
+</div>
+
+   
+</div></div>
