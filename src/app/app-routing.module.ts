@@ -4,28 +4,26 @@ import { DashboardEditComponent } from './dashboard-edit/dashboard-edit.componen
 import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
-import { HomePageModule } from './home-page/home-page.module';
-import { LoginPageComponent } from './login-page/login-page.component';
-import { RegistrationPageComponent } from './registration-page/registration-page.component';
 import { RouterAuthService } from './services/router_auth.service';
 
 const routes: Routes = [
-  {path: '', component: HomePageComponent},
+  {path: '', component: HomePageComponent, pathMatch: 'full'},
   {path: 'home', component:HomePageComponent},
   {path: 'login', loadChildren: () => import('./login-page/login-page.module').then(m => m.LoginPageModule)},
   {path: 'register', loadChildren: () => import('./registration-page/registration-page.module').then(m => m.RegistrationPageModule)},
-  {path: 'dashboard', component:DashboardPageComponent, canActivate : [RouterAuthService],
+  { path: 'dashboard', component: DashboardPageComponent, canActivate : [RouterAuthService] , canActivateChild : [RouterAuthService],
       children: [
-      {  path: 'edit/:id', component: DashboardEditComponent, canActivate : [RouterAuthService]  }
-      ] 
+        {  path: 'edit/:id', component: DashboardEditComponent  }
+      ]  
   },
   {path: '**', component:ErrorPageComponent}
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers:[RouterAuthService]
 })
 export class AppRoutingModule { }
 
-//export const routingcomponents = [HomePageComponent, LoginPageComponent, RegistrationPageComponent, DashboardPageComponent, DashboardEditComponent];
+export const routingcomponents = [HomePageComponent, DashboardPageComponent, DashboardEditComponent];
