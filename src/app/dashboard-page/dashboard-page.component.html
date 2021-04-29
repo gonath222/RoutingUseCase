@@ -1,1 +1,6 @@
-<p>dashboard-page works!</p>
+<div class="container">
+    <input type="text" id='idvalue' [(ngModel)]="idvalue" class="form-control" name="idvalue" placeholder="Id" required="required">
+    <a [routerLink]="['/dashboard/edit',idvalue]" class="btn btn-link" href="#">View Dashboard {{ idvalue }}</a>
+    </div>
+
+    <router-outlet></router-outlet>
