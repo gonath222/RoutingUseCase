@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute,  Router, Event, NavigationEnd } from '@angular/router';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-dashboard-edit',
@@ -7,9 +9,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardEditComponent implements OnInit {
 
-  constructor() { }
+  id: string ="";
+  constructor(private router: Router, private loginService: LoginService, 
+    private route:ActivatedRoute ) {
+      debugger;
+      this.id=this.route.snapshot.params['id'];
+      this.router.events.subscribe((event:Event) => {
+        if(event instanceof NavigationEnd ){
+          this.id=this.route.snapshot.params['id'];
+        }
+      });
+     }
 
-  ngOnInit(): void {
-  }
+    ngOnInit() {
+      debugger;
+      this.id=this.route.snapshot.params['id'];
+      this.router.events.subscribe((event:Event) => {
+        if(event instanceof NavigationEnd ){
+          this.id=this.route.snapshot.params['id'];
+        }
+      });
+    }
 
 }
