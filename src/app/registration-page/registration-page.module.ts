@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { FormsModule} from '@angular/forms';
 import { RegistrationPageRouteModule } from './registration-page.router.module';
 import { RegistrationPageComponent } from './registration-page.component';
 
@@ -8,6 +8,7 @@ import { RegistrationPageComponent } from './registration-page.component';
   declarations: [RegistrationPageComponent],
   imports: [
     CommonModule,
+    FormsModule,
     RegistrationPageRouteModule
   ]
 })
