@@ -1,6 +1,8 @@
 import { Injectable } from "@angular/core";
 import { of } from 'rxjs';
-@Injectable()
+@Injectable({
+    providedIn: "root",
+  })
 
 export class LoginService {
     private isloggedIn: boolean;
@@ -17,8 +19,19 @@ export class LoginService {
     isUserLoggedIn(): boolean {
         return this.isloggedIn;
     }
+
+    getuserName(): string {
+        return this.userName;
+    }
  
     logoutUser(): void{
         this.isloggedIn = false;
+    }
+
+    isAdmin():boolean {
+        if (this.userName.toLowerCase() =='admin') {
+            return true; 
+        }
+        return false;
     }
 }
