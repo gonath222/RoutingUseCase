@@ -1,12 +1,14 @@
 <app-header-page></app-header-page>
-<div class="container">
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item active" aria-current="page">You are viewing the {{currentPage}} page. {{isLoggedin}}</li>
-    </ol>
-  </nav>
+<div class="container breadcrumb d-flex flex-md-row justify-content-between mb-2" >
+  <div class="left">
+You are in {{currentPage}} page. 
 </div>
+<div class="right">
+  <span class="text-right">Welcome {{isLoggedin}}</span>
+</div>
+</div>
+<div class="containter mb-2">
 <router-outlet></router-outlet>
-
+</div>
 <app-footer-page></app-footer-page>
 
