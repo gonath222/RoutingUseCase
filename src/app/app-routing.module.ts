@@ -13,7 +13,8 @@ const routes: Routes = [
   {path: 'register', loadChildren: () => import('./registration-page/registration-page.module').then(m => m.RegistrationPageModule)},
   { path: 'dashboard', component: DashboardPageComponent, canActivate : [RouterAuthService] , canActivateChild : [RouterAuthService],
       children: [
-        {  path: 'edit/:id', component: DashboardEditComponent  }
+        {  path: 'view', component: DashboardEditComponent  },
+        {  path: 'delete', component: DashboardEditComponent  }
       ]  
   },
   {path: '**', component:ErrorPageComponent}
