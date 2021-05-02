@@ -1,6 +1,6 @@
 body {
 	color: #000;
-	background: #F0EDEC;
+	background: #fff;
 }
 .form-control {
 	min-height: 41px;
@@ -40,13 +40,10 @@ body {
 .login-form .btn, .login-form .btn:active {        
 	font-size: 16px;
 	font-weight: bold;
-	background: #B9B3B1 !important;
 	border: none;
 	margin-bottom: 20px;
 }
-.login-form .btn:hover, .login-form .btn:focus {
-	background: #A7A2A1 !important;
-}    
+ 
 .login-form a {
 	color: #000;
 	text-decoration: none;
@@ -71,7 +68,7 @@ body {
     color: #A7A2A1;
 }
 .header{
-	background-color:#495057;
+	background-color:#068DB5;
 }
 .header a {
 	color:#fff;
@@ -85,7 +82,7 @@ body {
 	left: 0;
 	bottom: 0;
 	width: 100%;
-	background-color: #495057;
+	background-color: #068DB5;
 	color: white;
 	text-align: center;
  }
@@ -94,3 +91,55 @@ body {
  {
 	 border-color: #dc3545;
  }
+
+ .textcenter{
+	 text-align: center;
+ }
+
+ .modal {
+	text-align: center;
+  }
+  
+  @media screen and (min-width: 768px) { 
+	.modal:before {
+	  display: inline-block;
+	  vertical-align: middle;
+	  content: " ";
+	  height: 100%;
+	}
+  }
+  
+  .modal-dialog {
+	display: inline-block;
+	text-align: left;
+	vertical-align: middle;
+  }
+
+.modal-backdrop.in {  
+    opacity: 0.9;  
+}  
+  
+.modal-body {  
+    background-color: whitesmoke;  
+    border-radius: 11px;  
+}  
+  
+.modal {  
+    background-color: rgba(58, 51, 51, 0.4);  
+    padding-top:5px;  
+}  
+  
+.confirm-message {  
+    font-family:'Times New Roman', Times, serif;  
+    font-size:20px;  
+    font-weight:bold;  
+    margin-bottom:0px;  
+    margin-top:5px;  
+}  
+  
+.confirm-button {  
+    text-align: center;  
+    margin: 15px 0px 15px 0px;  
+}  
+  
+  

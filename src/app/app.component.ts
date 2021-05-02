@@ -9,15 +9,20 @@ import { LoginService } from './services/login.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'RoutingUseCase';
+  title = 'Routing & HTTP Client UseCase';
   currentPage: string;
   isLoggedin: string;
 
   constructor(private router: Router, private appRoutingModule: AppRoutingModule, private loginService: LoginService){
     this.router.events.subscribe((event:Event) => {
       if(event instanceof NavigationEnd ){
-        debugger;
-        this.isLoggedin = this.loginService.isUserLoggedIn() != undefined && this.loginService.isUserLoggedIn() ? "You are logged in as "+ this.loginService.getuserName()  : "You are not logged in";
+        if(this.loginService.isAdmin())
+        {
+          this.isLoggedin = "Admin";
+        }
+        else{
+          this.isLoggedin = this.loginService.isUserLoggedIn() != undefined && this.loginService.isUserLoggedIn() ? this.loginService.getuserName()  : "Guest";  
+        }
         if(event.url == "/")
         {
           this.currentPage = "HOME" ;

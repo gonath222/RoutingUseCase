@@ -14,6 +14,10 @@ import { ErrorPageComponent } from './error-page/error-page.component';
 import { RegistrationPageRouteModule } from './registration-page/registration-page.router.module'
 import { LoginPageRouteModule } from './login-page/login-page.router.module';
 import { LoginService } from './services/login.service';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTPInterceptorService } from './services/http.interceptor.service';
+import { ConfirmDialogModule } from './confirm-pop/confirm-pop.module';
+import { LoadingCirleComponent } from './loading-cirle/loading-cirle.component';
 
 @NgModule({
   declarations: [
@@ -23,16 +27,24 @@ import { LoginService } from './services/login.service';
     FooterPageComponent,
     DashboardPageComponent,
     DashboardEditComponent,
-    ErrorPageComponent   
+    ErrorPageComponent,
+    LoadingCirleComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     RegistrationPageRouteModule,
-    LoginPageRouteModule
+    LoginPageRouteModule,
+    HttpClientModule,
+    ConfirmDialogModule
   ],
-  providers: [LoginService],
+  providers: [LoginService,
+    {
+    provide: HTTP_INTERCEPTORS,
+    useClass: HTTPInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

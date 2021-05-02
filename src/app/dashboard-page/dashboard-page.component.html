@@ -1,6 +1,7 @@
 <div class="container">
-    <input type="text" id='idvalue' [(ngModel)]="idvalue" class="form-control" name="idvalue" placeholder="Id" required="required">
-    <a [routerLink]="['/dashboard/edit',idvalue]" class="btn btn-link" href="#">View Dashboard {{ idvalue }}</a>
-    </div>
-
+    <button class="btn btn-primary mx-2" routerLink="/dashboard/view">View All users</button>
+    <button class="btn btn-danger" (click)="showDialog()">Delete All users</button>
     <router-outlet></router-outlet>
+</div>
+
+<app-confirm-pop></app-confirm-pop> 

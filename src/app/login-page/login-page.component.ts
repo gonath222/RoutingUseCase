@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { UserData } from '../models/user.model';
+import { HttpService } from '../services/http.service';
 import { LoginService } from '../services/login.service';
 
 @Component({
@@ -8,27 +10,58 @@ import { LoginService } from '../services/login.service';
 })
 export class LoginPageComponent implements OnInit {
   isLoginClicked = false;
-  username : string ="";
-  password : string ="";
-  usernameResult : string ="";
-  passwordResult : string ="";
-
-  constructor(private loginService: LoginService, 
-    private router: Router) { }
+  username: string = "";
+  password: string = "";
+  usernameResult: string = "";
+  passwordResult: string = "";
+  isUserRegistered = false;
+  constructor(private loginService: LoginService,
+    private router: Router, private http: HttpService) { }
 
   ngOnInit(): void {
-
-  }
-
-  OnSubmitLogin(){
     debugger;
-    this.isLoginClicked = true;
-    this.usernameResult = this.username;
-    this.passwordResult = this.password;
-
-    this.loginService.login(this.username, this.password).subscribe(data => {
-      this.router.navigate( ['dashboard']);
-  });
+    if (this.username == "") {
+      this.isUserRegistered = false;
+    }
   }
 
+  OnSubmitLogin() {
+    this.isLoginClicked = true;
+    if (this.username != "") {
+      this.loginService.login(this.username, this.password);
+
+      if (this.username.toLowerCase() != "admin") {
+
+        this.http.GetAllUser().subscribe((users: UserData[]) => {
+          this.RouteToDashboard(users);
+        });
+      }
+      else {
+        this.router.navigate(["dashboard"])
+      }
+    }
+  }
+
+  RouteToDashboard(users: UserData[]) {
+    let isUserAvailable = false;
+    if (users.length == 0) {
+      this.isUserRegistered = true;
+    }
+    else {
+      users.filter((user) => {
+        if (user.username === this.username) {
+          isUserAvailable = true;
+        }
+      })
+    }
+
+    if (isUserAvailable) {
+      this.isLoginClicked= false;
+      this.router.navigate(["dashboard"]);
+    }
+    else {
+      this.isUserRegistered = true;
+      this.isLoginClicked= false;
+    }
+  }
 }

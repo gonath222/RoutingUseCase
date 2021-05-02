@@ -1,6 +1,12 @@
 <div class="container">
+  <div style="text-align:center" *ngIf="isLoginClicked">
+    <app-loading-cirle-login></app-loading-cirle-login>
+  </div>
+  <div class="alert alert-danger" *ngIf="isUserRegistered">
+    User is not there in our <strong>Database</strong>. Please <a routerLink="/register">Register</a> now.
+  </div>
     <div class="login-form">
-            <h2 class="text-center">Member Login</h2>   
+            <h3 class="text-center">Member Login</h3>   
             <div class="form-group">
                 <input type="text" id='username' [(ngModel)]="username" class="form-control" name="username" placeholder="Username" required="required">
               <div class="invalid-feedback" id="username_errortxt">
@@ -17,25 +23,6 @@
                 <button type="submit" id="LoginSubmit" (click)="OnSubmitLogin()" class="btn btn-primary btn-lg btn-block">Log in</button>
             </div>
             
-        <p class="text-center small">Don't have an account? <a href="registration.html">Register here!</a></p>
+        <p class="text-center small">Don't have an account? <a routerLink="/register">Register here!</a></p>
     </div>
-
-    <div class="login-form" [hidden]="!isLoginClicked" >
-        <div class="row">
-            <div class="col">
-                <p> Username: </p>
-            </div>
-            <div class="col">
-                <p>{{ usernameResult }}</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <p> Password: </p>
-            </div>
-            <div class="col">
-                <p [innerText]="passwordResult"></p>
-            </div>
-        </div>
-    </div>  
     </div>

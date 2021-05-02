@@ -6,7 +6,7 @@ import { LoginService } from './login.service';
 @Injectable()
 export class RouterAuthService implements CanActivateChild {
  
-    constructor(private _router:Router, private loginService: LoginService ) {
+    constructor(private router:Router, private loginService: LoginService ) {
     }
     canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree {
         if (!this.loginService.isAdmin()) {
@@ -20,6 +20,7 @@ export class RouterAuthService implements CanActivateChild {
                 state: RouterStateSnapshot): boolean {
         if (!this.loginService.isUserLoggedIn())  {
             alert('You are not allowed to view this page. Try after login');
+            this.router.navigate( ['login']);
             return false;
         } 
         return true;

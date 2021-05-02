@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserData } from '../models/user.model';
+import { HttpService } from '../services/http.service';
 
 @Component({
   selector: 'app-registration-page',
@@ -14,30 +16,42 @@ export class RegistrationPageComponent implements OnInit {
   cpassword:string ="";
   emailaddress:string ="";
   username: string="";
-  gender: string ="";
+  gender: string ="-1";
   buttonClicked = false;
-
-  fnResult: string ="";
-  lnResult: string ="";
-  pResult: string ="";
-  cpResult: string ="";
-  eaResult: string ="";
-  uResult : string ="";
-  gResult : string ="";
-  constructor() { }
+UserRegisteredSuccesfully = false;
+  constructor(private http: HttpService) { }
 
   ngOnInit(): void {
   }
 
   OnSubmitRegistration(){
     this.buttonClicked = true;
-    this.fnResult = this.firstname;
-    this.lnResult = this.lastname;
-    this.pResult = this.password;
-    this.cpResult = this.cpassword;
-    this.eaResult = this.emailaddress;
-    this.uResult = this.username;
-    this.gResult = this.gender;
+    const userData : UserData = {
+       firstname: this.firstname,
+       emailaddress : this.emailaddress,
+       cpassword : this.cpassword,
+       gender : this.gender,
+       lastname: this.lastname,
+       password: this.password,
+       username: this.username
+      }
+      this.http.AddUser(userData).subscribe(()=>
+      {
+        this.UserRegisteredSuccesfully = true;
+        this.buttonClicked = false;
+        this.ResetForm();
+      });
+  }
+
+  ResetForm()
+  {
+    this.firstname="";
+    this.username="";
+    this.cpassword="";
+    this.emailaddress="";
+    this.gender="-1";
+    this.lastname="";
+    this.password="";
   }
 
 }
