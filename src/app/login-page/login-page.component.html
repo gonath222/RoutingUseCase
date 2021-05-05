@@ -5,6 +5,9 @@
   <div class="alert alert-danger" *ngIf="isUserRegistered">
     User is not there in our <strong>Database</strong>. Please <a routerLink="/register">Register</a> now.
   </div>
+  <div class="alert alert-danger" *ngIf="error !=''">
+    <strong>{{ error }}</strong>
+  </div>
     <div class="login-form">
             <h3 class="text-center">Member Login</h3>   
             <div class="form-group">

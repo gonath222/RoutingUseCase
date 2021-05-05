@@ -12,19 +12,19 @@ import { LoginService } from '../services/login.service';
 export class DashboardPageComponent implements OnInit {
 
   idvalue: string;
-  
-  constructor(private loginService: LoginService, private router: Router,
-    private route:ActivatedRoute, private http: HttpService, private confirmPop: ConfirmDialogService) { }
+
+  constructor(private router: Router,
+    private confirmPop: ConfirmDialogService) { }
 
   ngOnInit(): void {
   }
 
-  showDialog() {  
+  showDialog() {
     const rou = this.router;
-    this.confirmPop.confirmThis("Are you sure, You want to delete all the Users data?", function () {  
+    this.confirmPop.confirmThis("Are you sure, You want to delete all the Users data?", () => {
       rou.navigate(["dashboard/delete"])
-    }, function () {  
-      
-    })  
-  }  
+    }, () => {
+
+    });
+  }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { catchError } from 'rxjs/operators';
 import { UserData } from '../models/user.model';
 import { HttpService } from '../services/http.service';
 import { LoginService } from '../services/login.service';
@@ -15,6 +16,7 @@ export class LoginPageComponent implements OnInit {
   usernameResult: string = "";
   passwordResult: string = "";
   isUserRegistered = false;
+  error = "";
   constructor(private loginService: LoginService,
     private router: Router, private http: HttpService) { }
 
@@ -26,6 +28,7 @@ export class LoginPageComponent implements OnInit {
   }
 
   OnSubmitLogin() {
+    debugger;
     this.isLoginClicked = true;
     if (this.username != "") {
       this.loginService.login(this.username, this.password);
@@ -56,12 +59,12 @@ export class LoginPageComponent implements OnInit {
     }
 
     if (isUserAvailable) {
-      this.isLoginClicked= false;
-      this.router.navigate(["dashboard"]);
+      this.isLoginClicked = false;
+      this.router.navigate(["userdashboard"]);
     }
     else {
       this.isUserRegistered = true;
-      this.isLoginClicked= false;
+      this.isLoginClicked = false;
     }
   }
 }

@@ -7,19 +7,21 @@ import { LoginService } from '../services/login.service';
   templateUrl: './header-page.component.html'
 })
 export class HeaderPageComponent implements OnInit {
-  isLoggedin: boolean; 
+  isLoggedin: boolean;
+  isAdminLoggedin: boolean;
   constructor(private router: Router, private loginService: LoginService) {
-    this.router.events.subscribe((event:Event) => {
-      if(event instanceof NavigationEnd ){
-        this.isLoggedin = this.loginService.isUserLoggedIn() != undefined && this.loginService.isUserLoggedIn() ? true  : false;
+    this.router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationEnd) {
+        this.isLoggedin = this.loginService.isUserLoggedIn() != undefined && this.loginService.isUserLoggedIn() ? true : false;
+        this.isAdminLoggedin = this.loginService.isAdmin() != undefined && this.loginService.isAdmin() ? true : false;
       }
     });
-   }
+  }
 
   ngOnInit(): void {
   }
 
-  logout(){
+  logout() {
     this.loginService.logoutUser();
   }
 }

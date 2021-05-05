@@ -1,0 +1,32 @@
+
+<div class="container">
+<div class="clear_fix mt-4"></div>
+<table class="table table-hover border" *ngIf="userData.length > 0 && !isGetinProgress">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">FirstName</th>
+        <th scope="col">LastName</th>
+        <th scope="col">UserName</th>
+        <th scope="col">Email Address</th>
+        <th scope="col">Password</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of userData; let i = index">
+        <th scope="row">{{ i }}</th>
+        <td>{{user.firstname}}</td>
+        <td>{{user.lastname}}</td>
+        <td>{{user.username}}</td>
+        <td>{{user.emailaddress}}</td>
+        <td>{{user.password}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="text-align:center" *ngIf="isGetinProgress">
+    <app-loading-cirle></app-loading-cirle>
+  </div>
+  <div class="text-center" *ngIf="userData.length == 0 && !isGetinProgress">
+        <span>No Users are registered.</span>
+  </div>
+</div>

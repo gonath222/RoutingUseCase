@@ -1,14 +1,16 @@
+<div class="container">
+
 <app-header-page></app-header-page>
-<div class="container breadcrumb d-flex flex-md-row justify-content-between mb-2" >
+<div class="breadcrumb d-flex flex-md-row justify-content-between mb-2" >
   <div class="left">
 You are in {{currentPage}} page. 
 </div>
 <div class="right">
-  <span class="text-right">Welcome {{isLoggedin}}</span>
+  <span class="text-right">Welcome {{userName}}</span>
 </div>
 </div>
 <div class="containter mb-2">
 <router-outlet></router-outlet>
 </div>
 <app-footer-page></app-footer-page>
-
+</div>

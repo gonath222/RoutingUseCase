@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -18,6 +18,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HTTPInterceptorService } from './services/http.interceptor.service';
 import { ConfirmDialogModule } from './confirm-pop/confirm-pop.module';
 import { LoadingCirleComponent } from './loading-cirle/loading-cirle.component';
+import { UserdashboardComponent } from './userdashboard/userdashboard.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { LoadingCirleComponent } from './loading-cirle/loading-cirle.component';
     DashboardPageComponent,
     DashboardEditComponent,
     ErrorPageComponent,
-    LoadingCirleComponent
+    LoadingCirleComponent,
+    UserdashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -41,10 +43,10 @@ import { LoadingCirleComponent } from './loading-cirle/loading-cirle.component';
   ],
   providers: [LoginService,
     {
-    provide: HTTP_INTERCEPTORS,
-    useClass: HTTPInterceptorService,
-    multi: true
-  }],
+      provide: HTTP_INTERCEPTORS,
+      useClass: HTTPInterceptorService,
+      multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

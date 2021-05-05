@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute,  Router, Event, NavigationEnd } from '@angular/router';
+import { ActivatedRoute} from '@angular/router';
 import { UserData } from '../models/user.model';
 import { HttpService } from '../services/http.service';
-import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-dashboard-edit',
@@ -11,39 +10,34 @@ import { LoginService } from '../services/login.service';
 })
 export class DashboardEditComponent implements OnInit {
   isGetinProgress = false;
-  id: string ="";
-  userData : UserData[] =[];
-  constructor(private router: Router, private loginService: LoginService, 
-    private route:ActivatedRoute, private http: HttpService ) {
-      debugger;
-      if(this.route.snapshot.routeConfig.path.toLowerCase() == "view")
-      {
-        this.GetAllUserDetails();
-      }
-      else{
-        this.DeleteAllUsers();
-      }
-     }
-
-    ngOnInit() {
+  id: string = "";
+  userData: UserData[] = [];
+  constructor(private route: ActivatedRoute, private http: HttpService) {
+    if (this.route.snapshot.routeConfig.path.toLowerCase() == "view") {
+      this.GetAllUserDetails();
     }
+    else {
+      this.DeleteAllUsers();
+    }
+  }
 
-    GetAllUserDetails()
-    {
-      this.isGetinProgress = true;
-      this.http.GetAllUser().subscribe(
-        event =>{
-            this.userData = event;
-            this.isGetinProgress = false;
-        }
+  ngOnInit() {
+  }
+
+  GetAllUserDetails() {
+    this.isGetinProgress = true;
+    this.http.GetAllUser().subscribe(
+      event => {
+        this.userData = event;
+        this.isGetinProgress = false;
+      }
     );
-    }
+  }
 
-    DeleteAllUsers()
-    {
-      this.http.DeleteAllUsers().subscribe(()=>{
-        this.GetAllUserDetails();
-      });
-    }
+  DeleteAllUsers() {
+    this.http.DeleteAllUsers().subscribe(() => {
+      this.GetAllUserDetails();
+    });
+  }
 
 }
